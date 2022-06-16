@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UserRightsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblFunctions">
+    <Key>
+      <PropertyRef Name="Menu" />
+    </Key>
+    <Property Name="Menu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Applications" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Descriptions" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ParentMenu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Applications" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblUserFunctions">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Menu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SetTime" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="AllowAdd" Type="Boolean" />
+    <Property Name="AllowEdit" Type="Boolean" />
+    <Property Name="AllowDelete" Type="Boolean" />
+  </EntityType>
+  <EntityContainer Name="UserRightEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblFunctions" EntityType="Self.tblFunctions" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" />
+    <EntitySet Name="tblUserFunctions" EntityType="Self.tblUserFunctions" />
+  </EntityContainer>
+</Schema>

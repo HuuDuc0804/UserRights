@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UserRightsModelStoreContainer" CdmEntityContainer="UserRightEntities">
+    <EntitySetMapping Name="tblFunctions">
+      <EntityTypeMapping TypeName="UserRightsModel.tblFunctions">
+        <MappingFragment StoreEntitySet="tblFunctions">
+          <ScalarProperty Name="Menu" ColumnName="Menu" />
+          <ScalarProperty Name="Applications" ColumnName="Applications" />
+          <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+          <ScalarProperty Name="ParentMenu" ColumnName="ParentMenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUser">
+      <EntityTypeMapping TypeName="UserRightsModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="Applications" ColumnName="Applications" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserFunctions">
+      <EntityTypeMapping TypeName="UserRightsModel.tblUserFunctions">
+        <MappingFragment StoreEntitySet="tblUserFunctions">
+          <ScalarProperty Name="AllowDelete" ColumnName="AllowDelete" />
+          <ScalarProperty Name="AllowEdit" ColumnName="AllowEdit" />
+          <ScalarProperty Name="AllowAdd" ColumnName="AllowAdd" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Menu" ColumnName="Menu" />
+          <ScalarProperty Name="SetTime" ColumnName="SetTime" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

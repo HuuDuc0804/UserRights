@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UserRightsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblFunctions">
+          <Key>
+            <PropertyRef Name="Menu" />
+          </Key>
+          <Property Name="Menu" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Applications" Type="nvarchar" MaxLength="100" />
+          <Property Name="Descriptions" Type="nvarchar" MaxLength="100" />
+          <Property Name="ParentMenu" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="100" />
+          <Property Name="Applications" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblUserFunctions">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Menu" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SetTime" Type="datetime" />
+          <Property Name="AllowAdd" Type="bit" />
+          <Property Name="AllowEdit" Type="bit" />
+          <Property Name="AllowDelete" Type="bit" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="UserRightsModelStoreContainer">
+          <EntitySet Name="tblFunctions" EntityType="Self.tblFunctions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserFunctions" EntityType="Self.tblUserFunctions" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UserRightsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblFunctions">
+          <Key>
+            <PropertyRef Name="Menu" />
+          </Key>
+          <Property Name="Menu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Applications" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descriptions" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ParentMenu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Applications" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblUserFunctions">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Menu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SetTime" Type="DateTime" Precision="3" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="AllowAdd" Type="Boolean" />
+          <Property Name="AllowEdit" Type="Boolean" />
+          <Property Name="AllowDelete" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="UserRightEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblFunctions" EntityType="Self.tblFunctions" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" />
+          <EntitySet Name="tblUserFunctions" EntityType="Self.tblUserFunctions" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UserRightsModelStoreContainer" CdmEntityContainer="UserRightEntities">
+          <EntitySetMapping Name="tblFunctions">
+            <EntityTypeMapping TypeName="UserRightsModel.tblFunctions">
+              <MappingFragment StoreEntitySet="tblFunctions">
+                <ScalarProperty Name="Menu" ColumnName="Menu" />
+                <ScalarProperty Name="Applications" ColumnName="Applications" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="ParentMenu" ColumnName="ParentMenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUser">
+            <EntityTypeMapping TypeName="UserRightsModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Applications" ColumnName="Applications" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserFunctions">
+            <EntityTypeMapping TypeName="UserRightsModel.tblUserFunctions">
+              <MappingFragment StoreEntitySet="tblUserFunctions">
+                <ScalarProperty Name="AllowDelete" ColumnName="AllowDelete" />
+                <ScalarProperty Name="AllowEdit" ColumnName="AllowEdit" />
+                <ScalarProperty Name="AllowAdd" ColumnName="AllowAdd" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Menu" ColumnName="Menu" />
+                <ScalarProperty Name="SetTime" ColumnName="SetTime" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

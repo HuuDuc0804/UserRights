@@ -25,8 +25,9 @@
         </EntityType>
         <EntityType Name="tblUserFunctions">
           <Key>
-            <PropertyRef Name="UserName" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Menu" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="SetTime" Type="datetime" />
@@ -35,86 +36,156 @@
           <Property Name="AllowDelete" Type="bit" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <Association Name="FK_tblUserFunctions_tblFunctions">
+          <End Role="tblFunctions" Type="Self.tblFunctions" Multiplicity="1" />
+          <End Role="tblUserFunctions" Type="Self.tblUserFunctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFunctions">
+              <PropertyRef Name="Menu" />
+            </Principal>
+            <Dependent Role="tblUserFunctions">
+              <PropertyRef Name="Menu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserFunctions_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblUserFunctions" Type="Self.tblUserFunctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="tblUserFunctions">
+              <PropertyRef Name="UserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="UserRightsModelStoreContainer">
           <EntitySet Name="tblFunctions" EntityType="Self.tblFunctions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserFunctions" EntityType="Self.tblUserFunctions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblUserFunctions_tblFunctions" Association="Self.FK_tblUserFunctions_tblFunctions">
+            <End Role="tblFunctions" EntitySet="tblFunctions" />
+            <End Role="tblUserFunctions" EntitySet="tblUserFunctions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserFunctions_tblUser" Association="Self.FK_tblUserFunctions_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblUserFunctions" EntitySet="tblUserFunctions" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UserRightsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="UserRightsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblFunctions" EntityType="UserRightsModel.tblFunctions" />
+          <EntitySet Name="tblUser" EntityType="UserRightsModel.tblUser" />
+          <EntitySet Name="tblUserFunctions" EntityType="UserRightsModel.tblUserFunctions" />
+          <AssociationSet Name="FK_tblUserFunctions_tblFunctions" Association="UserRightsModel.FK_tblUserFunctions_tblFunctions">
+            <End Role="tblFunctions" EntitySet="tblFunctions" />
+            <End Role="tblUserFunctions" EntitySet="tblUserFunctions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserFunctions_tblUser" Association="UserRightsModel.FK_tblUserFunctions_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblUserFunctions" EntitySet="tblUserFunctions" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="tblFunctions">
           <Key>
             <PropertyRef Name="Menu" />
           </Key>
-          <Property Name="Menu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Menu" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Applications" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Descriptions" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ParentMenu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUserFunctions" Relationship="UserRightsModel.FK_tblUserFunctions_tblFunctions" FromRole="tblFunctions" ToRole="tblUserFunctions" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="UserName" />
           </Key>
-          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Applications" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUserFunctions" Relationship="UserRightsModel.FK_tblUserFunctions_tblUser" FromRole="tblUser" ToRole="tblUserFunctions" />
         </EntityType>
         <EntityType Name="tblUserFunctions">
           <Key>
-            <PropertyRef Name="UserName" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Menu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Menu" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SetTime" Type="DateTime" Precision="3" />
-          <Property Name="Active" Type="Boolean" />
           <Property Name="AllowAdd" Type="Boolean" />
           <Property Name="AllowEdit" Type="Boolean" />
           <Property Name="AllowDelete" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="tblFunctions" Relationship="UserRightsModel.FK_tblUserFunctions_tblFunctions" FromRole="tblUserFunctions" ToRole="tblFunctions" />
+          <NavigationProperty Name="tblUser" Relationship="UserRightsModel.FK_tblUserFunctions_tblUser" FromRole="tblUserFunctions" ToRole="tblUser" />
         </EntityType>
-        <EntityContainer Name="UserRightEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblFunctions" EntityType="Self.tblFunctions" />
-          <EntitySet Name="tblUser" EntityType="Self.tblUser" />
-          <EntitySet Name="tblUserFunctions" EntityType="Self.tblUserFunctions" />
-        </EntityContainer>
+        <Association Name="FK_tblUserFunctions_tblFunctions">
+          <End Type="UserRightsModel.tblFunctions" Role="tblFunctions" Multiplicity="1" />
+          <End Type="UserRightsModel.tblUserFunctions" Role="tblUserFunctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFunctions">
+              <PropertyRef Name="Menu" />
+            </Principal>
+            <Dependent Role="tblUserFunctions">
+              <PropertyRef Name="Menu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserFunctions_tblUser">
+          <End Type="UserRightsModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="UserRightsModel.tblUserFunctions" Role="tblUserFunctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="tblUserFunctions">
+              <PropertyRef Name="UserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="UserRightsModelStoreContainer" CdmEntityContainer="UserRightEntities">
+        <EntityContainerMapping StorageEntityContainer="UserRightsModelStoreContainer" CdmEntityContainer="UserRightsEntities">
           <EntitySetMapping Name="tblFunctions">
             <EntityTypeMapping TypeName="UserRightsModel.tblFunctions">
               <MappingFragment StoreEntitySet="tblFunctions">
-                <ScalarProperty Name="Menu" ColumnName="Menu" />
-                <ScalarProperty Name="Applications" ColumnName="Applications" />
-                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
                 <ScalarProperty Name="ParentMenu" ColumnName="ParentMenu" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="Applications" ColumnName="Applications" />
+                <ScalarProperty Name="Menu" ColumnName="Menu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUser">
             <EntityTypeMapping TypeName="UserRightsModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Pass" ColumnName="Pass" />
                 <ScalarProperty Name="Applications" ColumnName="Applications" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUserFunctions">
             <EntityTypeMapping TypeName="UserRightsModel.tblUserFunctions">
               <MappingFragment StoreEntitySet="tblUserFunctions">
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="AllowDelete" ColumnName="AllowDelete" />
                 <ScalarProperty Name="AllowEdit" ColumnName="AllowEdit" />
                 <ScalarProperty Name="AllowAdd" ColumnName="AllowAdd" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Menu" ColumnName="Menu" />
                 <ScalarProperty Name="SetTime" ColumnName="SetTime" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Menu" ColumnName="Menu" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

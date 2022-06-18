@@ -13,10 +13,10 @@ namespace UserRight
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class UserRightEntities : DbContext
+    public partial class UserRightsEntities : DbContext
     {
-        public UserRightEntities()
-            : base("name=UserRightEntities")
+        public UserRightsEntities()
+            : base("name=UserRightsEntities")
         {
         }
     

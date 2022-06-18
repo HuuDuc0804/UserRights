@@ -14,12 +14,16 @@ namespace UserRight
     
     public partial class tblUserFunctions
     {
+        public int ID { get; set; }
         public string UserName { get; set; }
         public string Menu { get; set; }
         public Nullable<System.DateTime> SetTime { get; set; }
-        public Nullable<bool> Active { get; set; }
         public Nullable<bool> AllowAdd { get; set; }
         public Nullable<bool> AllowEdit { get; set; }
         public Nullable<bool> AllowDelete { get; set; }
+        public Nullable<bool> Active { get; set; }
+    
+        public virtual tblFunctions tblFunctions { get; set; }
+        public virtual tblUser tblUser { get; set; }
     }
 }

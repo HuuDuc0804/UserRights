@@ -13,7 +13,7 @@ namespace UserRight
 {
     public partial class frmLogin : DevExpress.XtraEditors.XtraForm
     {
-        UserRightEntities entities;
+        UserRightsEntities entities;
         public frmLogin()
         {
             InitializeComponent();
@@ -21,7 +21,7 @@ namespace UserRight
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            entities = new UserRightEntities();
+            entities = new UserRightsEntities();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

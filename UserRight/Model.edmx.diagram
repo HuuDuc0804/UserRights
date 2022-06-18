@@ -4,10 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d6b8ea833f8342158af28356d22a37c0" Name="Diagram1">
-        <EntityTypeShape EntityType="UserRightsModel.tblFunctions" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UserRightsModel.tblUser" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UserRightsModel.tblUserFunctions" Width="1.5" PointX="1.125" PointY="3.125" IsExpanded="true" />
+      <Diagram DiagramId="c3791d94900a491f86efb5bcb23bcbf4" Name="Diagram1">
+        <EntityTypeShape EntityType="UserRightsModel.tblFunctions" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="UserRightsModel.tblUser" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="UserRightsModel.tblUserFunctions" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="UserRightsModel.FK_tblUserFunctions_tblFunctions" />
+        <AssociationConnector Association="UserRightsModel.FK_tblUserFunctions_tblUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

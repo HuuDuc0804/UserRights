@@ -20,8 +20,9 @@
   </EntityType>
   <EntityType Name="tblUserFunctions">
     <Key>
-      <PropertyRef Name="UserName" />
+      <PropertyRef Name="ID" />
     </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Menu" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="SetTime" Type="datetime" />
@@ -30,9 +31,41 @@
     <Property Name="AllowDelete" Type="bit" />
     <Property Name="Active" Type="bit" />
   </EntityType>
+  <Association Name="FK_tblUserFunctions_tblFunctions">
+    <End Role="tblFunctions" Type="Self.tblFunctions" Multiplicity="1" />
+    <End Role="tblUserFunctions" Type="Self.tblUserFunctions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFunctions">
+        <PropertyRef Name="Menu" />
+      </Principal>
+      <Dependent Role="tblUserFunctions">
+        <PropertyRef Name="Menu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserFunctions_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblUserFunctions" Type="Self.tblUserFunctions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserName" />
+      </Principal>
+      <Dependent Role="tblUserFunctions">
+        <PropertyRef Name="UserName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="UserRightsModelStoreContainer">
     <EntitySet Name="tblFunctions" EntityType="Self.tblFunctions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblUserFunctions" EntityType="Self.tblUserFunctions" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblUserFunctions_tblFunctions" Association="Self.FK_tblUserFunctions_tblFunctions">
+      <End Role="tblFunctions" EntitySet="tblFunctions" />
+      <End Role="tblUserFunctions" EntitySet="tblUserFunctions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserFunctions_tblUser" Association="Self.FK_tblUserFunctions_tblUser">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblUserFunctions" EntitySet="tblUserFunctions" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

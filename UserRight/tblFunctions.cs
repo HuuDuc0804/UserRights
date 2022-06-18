@@ -14,9 +14,18 @@ namespace UserRight
     
     public partial class tblFunctions
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblFunctions()
+        {
+            this.tblUserFunctions = new HashSet<tblUserFunctions>();
+        }
+    
         public string Menu { get; set; }
         public string Applications { get; set; }
         public string Descriptions { get; set; }
         public string ParentMenu { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblUserFunctions> tblUserFunctions { get; set; }
     }
 }

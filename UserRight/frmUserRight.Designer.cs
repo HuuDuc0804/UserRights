@@ -122,6 +122,7 @@
             // 
             // treeList
             // 
+            this.treeList.ChildListFieldName = "Menu";
             this.treeList.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.colDescription,
             this.colAdd,
@@ -131,8 +132,10 @@
             this.colMenu,
             this.colParentMenu});
             this.treeList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeList.KeyFieldName = "";
             this.treeList.Location = new System.Drawing.Point(0, 0);
             this.treeList.Name = "treeList";
+            this.treeList.ParentFieldName = "ParentMenu";
             this.treeList.Size = new System.Drawing.Size(577, 480);
             this.treeList.TabIndex = 0;
             // 
